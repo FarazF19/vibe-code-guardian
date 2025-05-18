@@ -31,7 +31,7 @@ const Contact = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col bg-background ${theme === 'light' ? 'light' : ''}`}>
+    <div className={`flex flex-col min-h-screen bg-background ${theme === 'light' ? 'light' : ''}`}>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <div className="pt-16">
         <div className="py-16 bg-gradient-to-br from-vibeblue-950 via-slate-950 to-vibeviolet-950 relative overflow-hidden">

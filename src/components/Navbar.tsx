@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,9 +12,14 @@ interface NavbarProps {
 
 const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const location = useLocation();
+  
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -29,11 +34,11 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-6">
-            <Link to="/" className="text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900">Home</Link>
-            <Link to="/" className="text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900">Features</Link>
-            <Link to="/" className="text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900">Pricing</Link>
-            <Link to="/dashboard" className="text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900">Dashboard</Link>
-            <Link to="/contact" className="text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900">Contact</Link>
+            <Link to="/" className={`text-sm font-medium ${isActive('/') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}>Home</Link>
+            <Link to="/#features" className={`text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900`}>Features</Link>
+            <Link to="/#pricing" className={`text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900`}>Pricing</Link>
+            <Link to="/dashboard" className={`text-sm font-medium ${isActive('/dashboard') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}>Dashboard</Link>
+            <Link to="/contact" className={`text-sm font-medium ${isActive('/contact') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}>Contact</Link>
             
             <Button 
               variant="outline"
@@ -100,20 +105,20 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
           <div className="flex flex-col space-y-4">
             <Link 
               to="/" 
-              className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
+              className={`text-sm font-medium py-2 px-4 rounded-md ${isActive('/') ? 'bg-slate-800 text-white light:bg-slate-100 light:text-slate-900' : 'text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link 
-              to="/" 
+              to="/#features" 
               className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
               onClick={() => setMobileMenuOpen(false)}
             >
               Features
             </Link>
             <Link 
-              to="/" 
+              to="/#pricing" 
               className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -121,14 +126,14 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             </Link>
             <Link 
               to="/dashboard" 
-              className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
+              className={`text-sm font-medium py-2 px-4 rounded-md ${isActive('/dashboard') ? 'bg-slate-800 text-white light:bg-slate-100 light:text-slate-900' : 'text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Dashboard
             </Link>
             <Link 
               to="/contact" 
-              className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
+              className={`text-sm font-medium py-2 px-4 rounded-md ${isActive('/contact') ? 'bg-slate-800 text-white light:bg-slate-100 light:text-slate-900' : 'text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact

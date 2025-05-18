@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import MatrixBackground from '@/components/MatrixBackground';
 
 const Contact = () => {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -32,6 +33,7 @@ const Contact = () => {
 
   return (
     <div className={`flex flex-col min-h-screen bg-background ${theme === 'light' ? 'light' : ''}`}>
+      <MatrixBackground theme={theme} />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <div className="flex-grow pt-16">
         <div className="py-16 bg-gradient-to-br from-vibeblue-950 via-slate-950 to-vibeviolet-950 relative overflow-hidden">

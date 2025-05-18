@@ -8,6 +8,7 @@ import PricingSection from '@/components/PricingSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import MatrixBackground from '@/components/MatrixBackground';
 
 const Index = () => {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -37,6 +38,7 @@ const Index = () => {
 
   return (
     <div className={`flex flex-col min-h-screen animated-gradient ${theme === 'light' ? 'light' : ''}`}>
+      <MatrixBackground theme={theme} />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="flex-grow">
         <HeroSection />

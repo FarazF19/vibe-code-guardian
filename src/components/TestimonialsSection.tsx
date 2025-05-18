@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type TestimonialCardProps = {
   quote: string;
@@ -12,7 +13,10 @@ type TestimonialCardProps = {
 
 const TestimonialCard = ({ quote, author, role, initials, bgColor }: TestimonialCardProps) => {
   return (
-    <div className="vibrant-card p-6 md:p-8 hover-lift glow relative">
+    <motion.div 
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      className="vibrant-card p-6 md:p-8 hover-lift glow relative"
+    >
       {/* Quote icon */}
       <div className="absolute -top-4 -right-4 w-8 h-8 rounded-full bg-gradient-to-br from-vibeblue-500 to-vibeviolet-500 flex items-center justify-center shadow-lg">
         <Quote className="h-4 w-4 text-white" />
@@ -29,7 +33,7 @@ const TestimonialCard = ({ quote, author, role, initials, bgColor }: Testimonial
           <div className="text-sm text-slate-400">{role}</div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -55,6 +59,27 @@ const TestimonialsSection = () => {
       role: "Full-Stack Developer, Freelance",
       initials: "JL",
       bgColor: "bg-gradient-to-br from-vibeblue-600 to-vibeviolet-600"
+    },
+    {
+      quote: "As a vibecoder, I appreciate tools that understand aesthetic alongside function. VibeSafe delivers both.",
+      author: "Zoe Chen",
+      role: "Creative Technologist, Digital Nomad",
+      initials: "ZC",
+      bgColor: "bg-gradient-to-br from-vibeviolet-600 to-vibeblue-600"
+    },
+    {
+      quote: "My solo projects need security too. VibeSafe feels like having a security expert on the team.",
+      author: "Ravi Kapoor",
+      role: "Indie Maker, AI Enthusiast",
+      initials: "RK",
+      bgColor: "bg-vibeblue-700"
+    },
+    {
+      quote: "The vibe is immaculate, and so is the security. Perfect for creators who want both.",
+      author: "Skyler Johnson",
+      role: "Digital Artist & Developer",
+      initials: "SJ",
+      bgColor: "bg-vibeviolet-700"
     }
   ];
 
@@ -66,18 +91,32 @@ const TestimonialsSection = () => {
       <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-vibeblue-600/10 rounded-full blur-[80px]"></div>
       
       <div className="container relative z-10">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">Loved by Developers</span>
+            <span className="gradient-text">Trusted by Creators</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Join thousands of developers who've made security seamless with VibeSafe
+            Join thousands of vibecoders and developers who've made security seamless with VibeSafe
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} {...testimonial} />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <TestimonialCard {...testimonial} />
+            </motion.div>
           ))}
         </div>
       </div>

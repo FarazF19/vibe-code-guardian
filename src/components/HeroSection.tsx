@@ -124,6 +124,25 @@ const TerminalAnimation = () => {
   );
 };
 
+// Animated language marquee
+const SupportedLanguages = () => {
+  const languages = [
+    "JavaScript", "TypeScript", "Python", "Ruby", "Java", "Go", "PHP", "C#", "Rust", "Kotlin", "Swift"
+  ];
+  
+  return (
+    <div className="relative w-full overflow-hidden py-4 mt-6 before:absolute before:left-0 before:top-0 before:z-10 before:w-20 before:h-full before:bg-gradient-to-r before:from-slate-950 before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:w-20 after:h-full after:bg-gradient-to-l after:from-slate-950 after:to-transparent">
+      <div className="animate-marquee whitespace-nowrap">
+        {[...languages, ...languages].map((language, index) => (
+          <span key={index} className="mx-4 text-sm font-medium text-vibeblue-400 px-3 py-1 rounded-full bg-vibeblue-900/20 border border-vibeblue-800/30">
+            {language}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const HeroSection = () => {
   return (
     <div className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden animated-gradient" id="hero">
@@ -145,33 +164,58 @@ const HeroSection = () => {
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 tracking-tight leading-tight">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-5xl xl:text-6xl font-bold mb-4 tracking-tight leading-tight"
+            >
               <span className="block text-white mb-2">AI-native Security</span>
               <span className="gradient-text">for Vibe Coders.</span>
-            </h1>
+            </motion.h1>
             
-            <p className="text-lg text-slate-300 mb-6 max-w-2xl lg:mx-0 mx-auto">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-lg text-slate-300 mb-6 max-w-2xl lg:mx-0 mx-auto"
+            >
               Scan, fix, and refactor your codebase with one click. Locally or on GitHub.
-            </p>
+            </motion.p>
 
-            <div className="mb-8">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mb-8"
+            >
               <TypewriterText texts={[
                 "Fix vulnerabilities in seconds.",
                 "Your AI-powered code guardian.",
                 "Security. Style. Simplicity."
               ]} />
-            </div>
+            </motion.div>
             
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8"
+            >
               <Button className="glass-card glow bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600 hover:from-vibeblue-700 hover:to-vibeviolet-700 text-white px-8 py-6 text-lg rounded-xl">
                 <ShieldCheck className="mr-2 h-5 w-5" /> Try Free Scan
               </Button>
               <Button variant="outline" className="glass-card border border-slate-700 hover:border-vibeblue-500 hover:bg-slate-800/50 px-8 py-6 text-lg rounded-xl">
-                <Github className="mr-2 h-5 w-5" /> Deploy on GitHub
+                <Github className="mr-2 h-5 w-5" /> Connect with GitHub
               </Button>
-            </div>
+            </motion.div>
             
-            <div className="flex items-center justify-center lg:justify-start space-x-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="flex items-center justify-center lg:justify-start space-x-6"
+            >
               <div className="flex -space-x-2">
                 <div className="w-8 h-8 rounded-full bg-vibeblue-500 flex items-center justify-center text-white text-xs">JD</div>
                 <div className="w-8 h-8 rounded-full bg-vibeviolet-500 flex items-center justify-center text-white text-xs">KM</div>
@@ -181,11 +225,19 @@ const HeroSection = () => {
               <p className="text-sm text-slate-400">
                 Trusted by <span className="font-semibold text-white">1,000+</span> developers
               </p>
-            </div>
+            </motion.div>
+            
+            {/* Animated Language Support */}
+            <SupportedLanguages />
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative w-full max-w-md"
+            >
               <TerminalAnimation />
               
               {/* Glow effect behind terminal */}
@@ -194,7 +246,7 @@ const HeroSection = () => {
               {/* Decorative lines */}
               <div className="absolute -top-5 -right-5 w-20 h-20 border-t-2 border-r-2 border-vibeblue-500/50 rounded-tr-xl"></div>
               <div className="absolute -bottom-5 -left-5 w-20 h-20 border-b-2 border-l-2 border-vibeviolet-500/50 rounded-bl-xl"></div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

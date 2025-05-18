@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, Upload, FileText, Settings, LogOut, Code, Terminal, Eye, Lock, AlertTriangle, CheckCircle, Github } from 'lucide-react';
+import { ShieldCheck, Upload, FileText, Settings, LogOut, Code, Terminal, Eye, Lock, AlertTriangle, CheckCircle, Github, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
+import { motion } from 'framer-motion';
 
 const SecurityIssueCard = ({ 
   title, 
@@ -125,7 +126,12 @@ const Dashboard = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="glass-card glow p-6 rounded-xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="glass-card glow p-6 rounded-xl"
+          >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Security Score</p>
@@ -138,9 +144,14 @@ const Dashboard = () => {
             <div className="mt-4">
               <Progress value={82} className="h-2 bg-slate-800" />
             </div>
-          </div>
+          </motion.div>
           
-          <div className="glass-card glow p-6 rounded-xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="glass-card glow p-6 rounded-xl"
+          >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Scans This Month</p>
@@ -153,9 +164,14 @@ const Dashboard = () => {
             <div className="mt-4">
               <Progress value={50} className="h-2 bg-slate-800" />
             </div>
-          </div>
+          </motion.div>
           
-          <div className="glass-card glow p-6 rounded-xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="glass-card glow p-6 rounded-xl"
+          >
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Pro Plan</p>
@@ -170,10 +186,15 @@ const Dashboard = () => {
                 Manage Subscription
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
         
-        <div className="glass-card glow p-8 text-center mb-8 rounded-xl border border-slate-800 relative">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="glass-card glow p-8 text-center mb-8 rounded-xl border border-slate-800 relative"
+        >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-vibeblue-500 to-transparent"></div>
           
           <h2 className="text-xl font-semibold mb-3 text-white">Ready to scan your code?</h2>
@@ -188,16 +209,45 @@ const Dashboard = () => {
               <Github className="mr-2 h-5 w-5" /> Connect GitHub
             </Button>
           </div>
+        </motion.div>
+        
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold text-white">Security Issues</h2>
+          <div className="flex space-x-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-2 text-vibeblue-400 border-slate-700">
+              <Download className="h-4 w-4" /> Download Report
+            </Button>
+          </div>
         </div>
         
-        <h2 className="text-xl font-bold mb-6 text-white">Security Issues</h2>
         <div className="space-y-6 mb-8">
           {securityIssues.map((issue, index) => (
-            <SecurityIssueCard key={index} {...issue} />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+            >
+              <SecurityIssueCard {...issue} />
+            </motion.div>
           ))}
         </div>
         
-        <div className="glass-card p-6 rounded-xl border border-slate-800">
+        <div className="flex justify-end mb-8 space-x-4">
+          <Button variant="outline" className="border-vibeblue-700 text-vibeblue-400 hover:bg-vibeblue-900/20">
+            Apply Fixes
+          </Button>
+          <Button className="bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600 hover:from-vibeblue-700 hover:to-vibeviolet-700 text-white">
+            <Github className="mr-2 h-4 w-4" /> Deploy Fixed Code to GitHub
+          </Button>
+        </div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="glass-card p-6 rounded-xl border border-slate-800"
+        >
           <h2 className="text-xl font-semibold mb-4 text-white">Recent Scans</h2>
           
           <div className="overflow-x-auto">
@@ -222,7 +272,12 @@ const Dashboard = () => {
                   </td>
                   <td className="py-3 px-4 text-sm">0</td>
                   <td className="py-3 px-4 text-right">
-                    <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">View</Button>
+                    <div className="flex justify-end space-x-2">
+                      <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">View</Button>
+                      <Button variant="ghost" size="sm" className="text-vibeblue-400 hover:text-vibeblue-300">
+                        <Download className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
                 <tr className="border-b border-slate-800">
@@ -235,7 +290,12 @@ const Dashboard = () => {
                   </td>
                   <td className="py-3 px-4 text-sm">3</td>
                   <td className="py-3 px-4 text-right">
-                    <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">View</Button>
+                    <div className="flex justify-end space-x-2">
+                      <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">View</Button>
+                      <Button variant="ghost" size="sm" className="text-vibeblue-400 hover:text-vibeblue-300">
+                        <Download className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -248,13 +308,18 @@ const Dashboard = () => {
                   </td>
                   <td className="py-3 px-4 text-sm">7</td>
                   <td className="py-3 px-4 text-right">
-                    <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">View</Button>
+                    <div className="flex justify-end space-x-2">
+                      <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">View</Button>
+                      <Button variant="ghost" size="sm" className="text-vibeblue-400 hover:text-vibeblue-300">
+                        <Download className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
       </main>
     </div>
   );

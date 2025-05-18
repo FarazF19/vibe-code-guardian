@@ -5,6 +5,45 @@
 
 @layer base {
   :root {
+    --background: 260 25% 98%;
+    --foreground: 260 25% 10%;
+
+    --card: 260 25% 100%;
+    --card-foreground: 260 25% 10%;
+
+    --popover: 260 25% 100%;
+    --popover-foreground: 260 25% 10%;
+
+    --primary: 252 85% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 275 85% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 260 25% 95%;
+    --muted-foreground: 260 25% 40%;
+
+    --accent: 190 90% 60%;
+    --accent-foreground: 260 25% 15%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 25% 90%;
+    --input: 260 25% 90%;
+    --ring: 252 85% 60%;
+    
+    --sidebar-background: 240 5.9% 95%;
+    --sidebar-foreground: 240 4.8% 10%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 90%;
+    --sidebar-accent-foreground: 240 4.8% 10%;
+    --sidebar-border: 240 3.7% 85%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  
+  .dark {
     --background: 260 25% 10%;
     --foreground: 260 20% 92%;
 
@@ -58,7 +97,7 @@
   }
   
   .vibrant-card {
-    @apply bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-lg border border-slate-800 transition-all duration-300 hover:shadow-xl hover:border-vibeblue-900/50 hover:shadow-vibeblue-900/20;
+    @apply bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-lg border border-slate-800 transition-all duration-300 hover:shadow-xl hover:border-vibeblue-900/50 hover:shadow-vibeblue-900/20 dark:bg-slate-900/80 dark:border-slate-800 light:bg-white/90 light:border-slate-200;
   }
   
   .hover-lift {
@@ -70,7 +109,7 @@
   }
   
   .glass-card {
-    @apply backdrop-blur-lg bg-slate-900/60 border border-slate-800/50 shadow-xl;
+    @apply backdrop-blur-lg bg-slate-900/60 border border-slate-800/50 shadow-xl dark:bg-slate-900/60 dark:border-slate-800/50 light:bg-white/80 light:border-slate-200/80;
   }
   
   .glow {
@@ -100,11 +139,28 @@
   }
   
   .animated-gradient {
-    @apply bg-gradient-to-br from-vibeblue-900 via-slate-900 to-vibeviolet-900 bg-300% animate-gradient-y;
+    @apply bg-gradient-to-br from-vibeblue-900 via-slate-900 to-vibeviolet-900 bg-300% animate-gradient-y dark:from-vibeblue-900 dark:via-slate-900 dark:to-vibeviolet-900 light:from-vibeblue-100 light:via-slate-100 light:to-vibeviolet-100;
   }
   
   .terminal-text {
     @apply font-mono text-vibeblue-400;
+  }
+  
+  .light-nav {
+    @apply bg-white/80 border-b border-slate-200/80 shadow-sm;
+  }
+  
+  .light .gradient-text {
+    @apply bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600;
+  }
+  
+  .light .glass-card {
+    @apply bg-white/80 border-slate-200/50;
+  }
+  
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+    will-change: transform;
   }
 }
 
@@ -131,6 +187,11 @@
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-float {

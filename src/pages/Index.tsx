@@ -7,7 +7,6 @@ import DemoSection from '@/components/DemoSection';
 import PricingSection from '@/components/PricingSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
-import PartnersSection from '@/components/PartnersSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -41,7 +40,6 @@ const Index = () => {
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="flex-grow">
         <HeroSection />
-        <PartnersSection />
         <div id="features">
           <FeaturesSection />
         </div>

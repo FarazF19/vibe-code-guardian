@@ -26,7 +26,7 @@ const PricingTier = ({
         relative rounded-2xl overflow-hidden transition-all duration-300
         ${highlighted 
           ? 'border-2 border-vibeblue-500 shadow-lg shadow-vibeblue-500/20' 
-          : 'border border-slate-200 dark:border-slate-800'}
+          : 'border border-slate-700 dark:border-slate-700 light:border-slate-300'}
       `}
     >
       {highlighted && (
@@ -38,15 +38,15 @@ const PricingTier = ({
         <h3 className="text-xl font-bold mb-2">{name}</h3>
         <div className="mb-4">
           <span className="text-3xl font-bold">{price}</span>
-          {price !== "Free" && <span className="text-slate-500 dark:text-slate-400">/mo</span>}
+          {price !== "Free" && <span className="text-slate-400 dark:text-slate-400 light:text-slate-500">/mo</span>}
         </div>
-        <p className="text-slate-600 dark:text-slate-400 mb-6">{description}</p>
+        <p className="text-slate-400 dark:text-slate-400 light:text-slate-600 mb-6">{description}</p>
         
         <ul className="space-y-3 mb-8">
           {features.map((feature, idx) => (
             <li key={idx} className="flex items-start">
               <Check className="h-5 w-5 text-vibeblue-500 mr-2 mt-0.5 flex-shrink-0" />
-              <span className="text-slate-600 dark:text-slate-400 text-sm">{feature}</span>
+              <span className="text-slate-300 dark:text-slate-300 light:text-slate-600 text-sm">{feature}</span>
             </li>
           ))}
         </ul>
@@ -55,7 +55,7 @@ const PricingTier = ({
           className={`w-full ${
             highlighted 
               ? 'bg-gradient-to-r from-vibeblue-500 to-vibeviolet-500 hover:from-vibeblue-600 hover:to-vibeviolet-600 text-white' 
-              : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200'
+              : 'bg-slate-800 dark:bg-slate-800 hover:bg-slate-700 dark:hover:bg-slate-700 text-slate-200 light:bg-slate-200 light:hover:bg-slate-300 light:text-slate-800'
           }`}
         >
           {buttonText}
@@ -108,13 +108,16 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-slate-900" id="pricing">
+    <section className="py-20 bg-gradient-to-br from-vibeblue-950 via-slate-950 to-vibeviolet-950 relative overflow-hidden" id="pricing">
+      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-vibeblue-600/10 rounded-full blur-[80px]"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-vibeviolet-600/10 rounded-full blur-[80px]"></div>
+      
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="gradient-text">Simple, Transparent Pricing</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 dark:text-slate-300 light:text-slate-600 max-w-2xl mx-auto">
             Choose the plan that's right for you and your team
           </p>
         </div>
@@ -126,9 +129,9 @@ const PricingSection = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-vibeblue-50 dark:bg-vibeblue-900/30 border border-vibeblue-200 dark:border-vibeblue-900">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-vibeblue-900/30 dark:bg-vibeblue-900/30 border border-vibeblue-800 dark:border-vibeblue-800">
             <ShieldCheck className="h-5 w-5 text-vibeblue-500" />
-            <span className="text-slate-700 dark:text-slate-300 text-sm">
+            <span className="text-slate-300 dark:text-slate-300 light:text-slate-700 text-sm">
               30-day money back guarantee
             </span>
           </div>

@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Upload, ShieldCheck, FileText } from 'lucide-react';
+import { Upload, ShieldCheck, FileText, Lock, Terminal, Code } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 type FeatureCardProps = {
   icon: React.ElementType;
@@ -10,12 +11,12 @@ type FeatureCardProps = {
 
 const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => {
   return (
-    <div className="vibrant-card p-6 hover-lift">
-      <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-vibeblue-500 to-vibeviolet-500 text-white flex items-center justify-center mb-6">
+    <div className="vibrant-card p-6 hover-lift glow">
+      <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-vibeblue-600 to-vibeviolet-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-vibeblue-900/20">
         <Icon size={24} />
       </div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-slate-600 dark:text-slate-400">{description}</p>
+      <h3 className="text-xl font-semibold mb-3 shimmer-text">{title}</h3>
+      <p className="text-slate-300">{description}</p>
     </div>
   );
 };
@@ -23,52 +24,88 @@ const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => {
 const FeaturesSection = () => {
   const features = [
     {
-      icon: Upload,
-      title: "Upload Your Code",
-      description: "Simply upload your codebase or connect your GitHub repository to get started. VibeSafe supports all major programming languages and frameworks."
+      icon: Terminal,
+      title: "One-Click Security Scan",
+      description: "Our AI engine detects vulnerabilities, bugs, and code smells across all major languages and frameworks in seconds."
     },
     {
       icon: ShieldCheck,
-      title: "One-Click Fix",
-      description: "Our AI automatically detects security vulnerabilities and offers one-click fixes. No deep technical knowledge required."
+      title: "AI-Powered Fixes",
+      description: "VibeSafe automatically generates and applies fixes for detected issues with one click, no deep technical knowledge required."
     },
     {
       icon: FileText,
       title: "Detailed Reports",
-      description: "Get comprehensive reports on security issues found, fixes applied, and recommendations for further improvements."
+      description: "Get comprehensive analysis with severity ratings, affected files, and recommended fixes for all identified issues."
+    }
+  ];
+
+  const secondaryFeatures = [
+    {
+      icon: Upload,
+      title: "Instant Deployment",
+      description: "Upload your codebase, connect GitHub, or scan local files. Start securing your project in under a minute."
+    },
+    {
+      icon: Lock,
+      title: "Privacy First",
+      description: "Your code never leaves your machine. All scanning and fixing happens locally for maximum security."
+    },
+    {
+      icon: Code,
+      title: "Developer Friendly",
+      description: "View before/after comparisons of all fixes. Accept, modify, or reject any changes with full control."
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-vibeblue-50 dark:from-slate-900 dark:to-slate-950" id="features">
-      <div className="container">
+    <section className="py-20 bg-gradient-to-b from-slate-900 to-vibeblue-950 relative overflow-hidden" id="features">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vibeblue-500/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vibeviolet-500/50 to-transparent"></div>
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-vibeviolet-600/10 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-1/3 left-1/3 w-64 h-64 bg-vibeblue-600/10 rounded-full blur-[100px]"></div>
+      
+      <div className="container relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">How It Works</span>
+            <span className="gradient-text">Intelligent Security</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            VibeSafe makes securing your code effortless with our streamlined process
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            VibeSafe combines AI and security expertise to protect your code automatically
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}
         </div>
         
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {secondaryFeatures.map((feature, index) => (
+            <FeatureCard key={index} {...feature} />
+          ))}
+        </div>
+        
         <div className="mt-20 text-center">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-vibeblue-100 dark:bg-vibeblue-900/30 text-vibeblue-700 dark:text-vibeblue-300 font-medium text-sm">
+          <div className="inline-flex items-center px-6 py-3 rounded-full glass-card text-vibeblue-400 font-medium text-sm">
             <span className="mr-2">✨</span>
-            <span>Supported in 20+ programming languages</span>
+            <span>Protecting code in 20+ programming languages</span>
           </div>
           
           <div className="mt-10 grid grid-cols-3 md:grid-cols-6 gap-8">
             {['JavaScript', 'Python', 'Ruby', 'Go', 'Java', 'PHP'].map((lang, idx) => (
-              <div key={idx} className="text-slate-500 dark:text-slate-400 font-mono text-sm">
+              <div key={idx} className="text-slate-400 font-mono text-sm">
                 {lang}
               </div>
             ))}
+          </div>
+          
+          <div className="mt-16">
+            <Button className="glass-card glow bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600 hover:from-vibeblue-700 hover:to-vibeviolet-700 text-white px-8 py-6 text-lg rounded-xl">
+              <ShieldCheck className="mr-2 h-5 w-5" /> Start Free Scan
+            </Button>
           </div>
         </div>
       </div>

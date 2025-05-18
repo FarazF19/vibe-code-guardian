@@ -5,47 +5,6 @@
 
 @layer base {
   :root {
-    --background: 252 87% 98%;
-    --foreground: 260 25% 15%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 260 25% 15%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 260 25% 15%;
-
-    --primary: 252 85% 60%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 275 85% 65%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 252 10% 90%;
-    --muted-foreground: 260 10% 40%;
-
-    --accent: 190 90% 60%;
-    --accent-foreground: 260 25% 15%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 260 10% 90%;
-    --input: 260 10% 90%;
-    --ring: 252 85% 60%;
-
-    --radius: 1rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
     --background: 260 25% 10%;
     --foreground: 260 20% 92%;
 
@@ -99,14 +58,101 @@
   }
   
   .vibrant-card {
-    @apply bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:shadow-xl hover:border-violet-200 dark:hover:border-violet-900;
+    @apply bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-lg border border-slate-800 transition-all duration-300 hover:shadow-xl hover:border-vibeblue-900/50 hover:shadow-vibeblue-900/20;
   }
   
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-vibeblue-900/20;
   }
   
   .animate-icon {
     @apply cursor-pointer transition-all duration-300 hover:scale-110;
   }
+  
+  .glass-card {
+    @apply backdrop-blur-lg bg-slate-900/60 border border-slate-800/50 shadow-xl;
+  }
+  
+  .glow {
+    @apply relative;
+  }
+  
+  .glow::after {
+    @apply content-[''] absolute -z-10 inset-0 rounded-2xl opacity-40 blur-xl bg-gradient-to-r from-vibeblue-600/30 to-vibeviolet-600/30;
+  }
+  
+  .glow:hover::after {
+    @apply opacity-60 transition-opacity duration-300;
+  }
+  
+  .shimmer-text {
+    @apply relative overflow-hidden;
+  }
+  
+  .shimmer-text::before {
+    @apply content-[''] absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer;
+  }
+  
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .animated-gradient {
+    @apply bg-gradient-to-br from-vibeblue-900 via-slate-900 to-vibeviolet-900 bg-300% animate-gradient-y;
+  }
+  
+  .terminal-text {
+    @apply font-mono text-vibeblue-400;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes gradient-y {
+  0%, 100% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite 1s;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-gradient-y {
+  animation: gradient-y 10s ease infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s infinite;
+}
+
+.bg-300\% {
+  background-size: 300% 300%;
 }

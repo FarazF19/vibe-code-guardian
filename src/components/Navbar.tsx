@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,7 @@ interface NavbarProps {
 const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -22,8 +23,36 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
     return location.pathname === path;
   };
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string, section?: string) => {
+    e.preventDefault();
+    
+    if (section && location.pathname === '/') {
+      // If we're on the home page and navigating to a section
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setMobileMenuOpen(false);
+    } else if (path === '/' && section) {
+      // If we're not on home page and navigating to a section on home
+      navigate('/');
+      // Wait for navigation to complete before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      setMobileMenuOpen(false);
+    } else {
+      // Regular navigation
+      navigate(path);
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 dark:bg-slate-950/80 border-b border-slate-800/50 transition-all duration-300 light:bg-white/80 light:border-slate-200/80">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 dark:bg-slate-950/80 border-b border-slate-800/50 transition-all duration-300 light:bg-white/90 light:border-slate-200/80">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -34,11 +63,41 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-6">
-            <Link to="/" className={`text-sm font-medium ${isActive('/') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}>Home</Link>
-            <Link to="/#features" className={`text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900`}>Features</Link>
-            <Link to="/#pricing" className={`text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900`}>Pricing</Link>
-            <Link to="/dashboard" className={`text-sm font-medium ${isActive('/dashboard') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}>Dashboard</Link>
-            <Link to="/contact" className={`text-sm font-medium ${isActive('/contact') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}>Contact</Link>
+            <a 
+              href="/"
+              onClick={(e) => handleNavigation(e, '/')} 
+              className={`text-sm font-medium ${isActive('/') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}
+            >
+              Home
+            </a>
+            <a 
+              href="/#features" 
+              onClick={(e) => handleNavigation(e, '/', 'features')}
+              className={`text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900`}
+            >
+              Features
+            </a>
+            <a 
+              href="/#pricing" 
+              onClick={(e) => handleNavigation(e, '/', 'pricing')}
+              className={`text-sm font-medium text-slate-300 hover:text-white transition-colors light:text-slate-600 light:hover:text-slate-900`}
+            >
+              Pricing
+            </a>
+            <a 
+              href="/dashboard"
+              onClick={(e) => handleNavigation(e, '/dashboard')}
+              className={`text-sm font-medium ${isActive('/dashboard') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}
+            >
+              Dashboard
+            </a>
+            <a 
+              href="/contact"
+              onClick={(e) => handleNavigation(e, '/contact')}
+              className={`text-sm font-medium ${isActive('/contact') ? 'text-white light:text-slate-900' : 'text-slate-300 hover:text-white light:text-slate-600 light:hover:text-slate-900'} transition-colors`}
+            >
+              Contact
+            </a>
             
             <Button 
               variant="outline"
@@ -103,52 +162,52 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
           className="md:hidden py-4 px-4 bg-slate-900/95 border-t border-slate-800/50 light:bg-white/95 light:border-slate-200/50"
         >
           <div className="flex flex-col space-y-4">
-            <Link 
-              to="/" 
+            <a 
+              href="/"
+              onClick={(e) => handleNavigation(e, '/')}
               className={`text-sm font-medium py-2 px-4 rounded-md ${isActive('/') ? 'bg-slate-800 text-white light:bg-slate-100 light:text-slate-900' : 'text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900'}`}
-              onClick={() => setMobileMenuOpen(false)}
             >
               Home
-            </Link>
-            <Link 
-              to="/#features" 
+            </a>
+            <a 
+              href="/#features"
+              onClick={(e) => handleNavigation(e, '/', 'features')}
               className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Features
-            </Link>
-            <Link 
-              to="/#pricing" 
+            </a>
+            <a 
+              href="/#pricing"
+              onClick={(e) => handleNavigation(e, '/', 'pricing')}
               className="text-sm font-medium py-2 px-4 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Pricing
-            </Link>
-            <Link 
-              to="/dashboard" 
+            </a>
+            <a 
+              href="/dashboard"
+              onClick={(e) => handleNavigation(e, '/dashboard')}
               className={`text-sm font-medium py-2 px-4 rounded-md ${isActive('/dashboard') ? 'bg-slate-800 text-white light:bg-slate-100 light:text-slate-900' : 'text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900'}`}
-              onClick={() => setMobileMenuOpen(false)}
             >
               Dashboard
-            </Link>
-            <Link 
-              to="/contact" 
+            </a>
+            <a 
+              href="/contact"
+              onClick={(e) => handleNavigation(e, '/contact')}
               className={`text-sm font-medium py-2 px-4 rounded-md ${isActive('/contact') ? 'bg-slate-800 text-white light:bg-slate-100 light:text-slate-900' : 'text-slate-300 hover:bg-slate-800 hover:text-white light:text-slate-600 light:hover:bg-slate-100 light:hover:text-slate-900'}`}
-              onClick={() => setMobileMenuOpen(false)}
             >
               Contact
-            </Link>
+            </a>
             <div className="pt-2 flex flex-col space-y-2">
-              <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+              <a href="/login" onClick={(e) => handleNavigation(e, '/login')}>
                 <Button variant="outline" className="w-full border-slate-700 hover:border-slate-600 light:border-slate-300 light:hover:border-slate-400">
                   Login
                 </Button>
-              </Link>
-              <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+              </a>
+              <a href="/dashboard" onClick={(e) => handleNavigation(e, '/dashboard')}>
                 <Button className="w-full bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600 hover:from-vibeblue-700 hover:to-vibeviolet-700 text-white">
                   Try Free
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </motion.div>

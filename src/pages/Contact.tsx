@@ -33,7 +33,7 @@ const Contact = () => {
   return (
     <div className={`flex flex-col min-h-screen bg-background ${theme === 'light' ? 'light' : ''}`}>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <div className="pt-16">
+      <div className="flex-grow pt-16">
         <div className="py-16 bg-gradient-to-br from-vibeblue-950 via-slate-950 to-vibeviolet-950 relative overflow-hidden">
           {/* Decorative elements */}
           <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-vibeblue-600/10 rounded-full blur-[80px]"></div>
@@ -41,7 +41,7 @@ const Contact = () => {
           
           <div className="container relative z-10 text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">Contact Us</h1>
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-300 light:text-slate-700 max-w-2xl mx-auto">
               We'd love to hear from you. Let us know how we can help.
             </p>
           </div>

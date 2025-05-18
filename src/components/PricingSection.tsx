@@ -34,13 +34,13 @@ const PricingTier = ({
           Most Popular
         </div>
       )}
-      <div className="p-8">
+      <div className="p-8 glass-card backdrop-blur-md bg-slate-900/40">
         <h3 className="text-xl font-bold mb-2">{name}</h3>
         <div className="mb-4">
           <span className="text-3xl font-bold">{price}</span>
           {price !== "Free" && <span className="text-slate-400 dark:text-slate-400 light:text-slate-500">/mo</span>}
         </div>
-        <p className="text-slate-400 dark:text-slate-400 light:text-slate-600 mb-6">{description}</p>
+        <p className="text-slate-300 dark:text-slate-300 light:text-slate-600 mb-6">{description}</p>
         
         <ul className="space-y-3 mb-8">
           {features.map((feature, idx) => (
@@ -108,11 +108,15 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-vibeblue-950 via-slate-950 to-vibeviolet-950 relative overflow-hidden" id="pricing">
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-vibeblue-600/10 rounded-full blur-[80px]"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-vibeviolet-600/10 rounded-full blur-[80px]"></div>
+    <section className="py-20 bg-gradient-to-br from-slate-950 via-vibeblue-950 to-vibeviolet-950 relative overflow-hidden" id="pricing">
+      {/* Background glow effects */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-vibeblue-600/10 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-vibeviolet-600/10 rounded-full blur-[100px]"></div>
       
-      <div className="container">
+      {/* Background mesh pattern */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIHN0cm9rZT0iIzMzODlmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4wNSIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNLTI5LjU5OSAxNy4zOThsMTYwLTkzLjYwMU0tMjEuNTk5IDI2LjE5OGwxNjAtOTMuNjAyTS0xMy41OTkgMzQuOTk4bDE2MC05My42MDJNLTUuNTk5IDQzLjc5OGwxNjAtOTMuNjAyTTIuNDAxIDUyLjU5OGwxNjAtOTMuNjAyTTEwLjQwMSA2MS4zOThsMTYwLTkzLjYwMk0xOC40MDEgNzAuMTk4bDE2MC05My42MDJNMjYuNDAxIDc4Ljk5OGwxNjAtOTMuNjAyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+      
+      <div className="container relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="gradient-text">Simple, Transparent Pricing</span>

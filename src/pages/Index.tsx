@@ -36,7 +36,7 @@ const Index = () => {
   };
 
   return (
-    <div className={`flex flex-col min-h-screen bg-background ${theme === 'light' ? 'light' : ''}`}>
+    <div className={`flex flex-col min-h-screen animated-gradient ${theme === 'light' ? 'light' : ''}`}>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="flex-grow">
         <HeroSection />

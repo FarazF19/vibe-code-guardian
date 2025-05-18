@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -101,11 +100,19 @@
   }
   
   .light .vibrant-card {
-    @apply bg-white/90 border-slate-200;
+    @apply bg-white shadow-lg border-slate-200/80;
   }
   
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-vibeblue-900/20;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .light .hover-lift:hover {
+    @apply shadow-slate-300/60;
+  }
+  
+  .dark .hover-lift:hover {
+    @apply shadow-vibeblue-900/20;
   }
   
   .animate-icon {
@@ -117,7 +124,7 @@
   }
   
   .light .glass-card {
-    @apply bg-white/80 border-slate-200/50;
+    @apply bg-white/90 border-slate-300/50 shadow-md;
   }
   
   .glow {
@@ -126,6 +133,10 @@
   
   .glow::after {
     @apply content-[''] absolute -z-10 inset-0 rounded-2xl opacity-40 blur-xl bg-gradient-to-r from-vibeblue-600/30 to-vibeviolet-600/30;
+  }
+  
+  .light .glow::after {
+    @apply opacity-30;
   }
   
   .glow:hover::after {
@@ -151,24 +162,36 @@
   }
   
   .light .animated-gradient {
-    @apply from-vibeblue-100 via-slate-100 to-vibeviolet-100;
+    @apply from-vibeblue-200 via-slate-50 to-vibeviolet-200;
   }
   
   .terminal-text {
     @apply font-mono text-vibeblue-400;
   }
   
+  .light .terminal-text {
+    @apply text-vibeblue-600;
+  }
+  
   .light-nav {
-    @apply bg-white/80 border-b border-slate-200/80 shadow-sm;
+    @apply bg-white/90 border-b border-slate-200 shadow-sm;
   }
   
   .light .gradient-text {
-    @apply bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600;
+    @apply bg-gradient-to-r from-vibeblue-700 to-vibeviolet-700;
   }
   
   .animate-marquee {
-    animation: marquee 20s linear infinite;
+    animation: marquee 25s linear infinite;
     will-change: transform;
+  }
+
+  .light .text-slate-300 {
+    @apply text-slate-700;
+  }
+
+  .light .text-slate-400 {
+    @apply text-slate-600;
   }
 }
 

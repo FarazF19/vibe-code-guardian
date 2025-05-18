@@ -1,13 +1,38 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
 const Contact = () => {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    // Check for user preference
+    const storedTheme = localStorage.getItem('vibe-theme');
+    if (storedTheme === 'light') {
+      setTheme('light');
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (theme === 'dark') {
+      setTheme('light');
+      document.documentElement.classList.add('light');
+      localStorage.setItem('vibe-theme', 'light');
+    } else {
+      setTheme('dark');
+      document.documentElement.classList.remove('light');
+      localStorage.setItem('vibe-theme', 'dark');
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950">
-      <Navbar />
+    <div className={`min-h-screen flex flex-col bg-background ${theme === 'light' ? 'light' : ''}`}>
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <div className="pt-16">
         <div className="py-16 bg-gradient-to-br from-vibeblue-950 via-slate-950 to-vibeviolet-950 relative overflow-hidden">
           {/* Decorative elements */}

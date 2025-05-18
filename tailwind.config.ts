@@ -162,5 +162,11 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		// Add a custom plugin to create the 'light' variant
+		function({ addVariant }) {
+			addVariant('light', '.light &');
+		}
+	],
 } satisfies Config;

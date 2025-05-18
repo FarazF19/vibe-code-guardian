@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, Upload, FileText, Settings, LogOut, Code, Terminal, Eye, Lock, AlertTriangle, CheckCircle } from 'lucide-react';
+import { ShieldCheck, Upload, FileText, Settings, LogOut, Code, Terminal, Eye, Lock, AlertTriangle, CheckCircle, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 

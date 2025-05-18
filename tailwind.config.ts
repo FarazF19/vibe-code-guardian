@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,30 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				vibeblue: {
+					50: '#e6f1ff',
+					100: '#cce3ff',
+					200: '#99c7ff',
+					300: '#66abff',
+					400: '#338fff',
+					500: '#0073ff',
+					600: '#005ccc',
+					700: '#004599',
+					800: '#002e66',
+					900: '#001733',
+				},
+				vibeviolet: {
+					50: '#f3e6ff',
+					100: '#e7ccff',
+					200: '#cf99ff',
+					300: '#b766ff',
+					400: '#9f33ff',
+					500: '#8700ff',
+					600: '#6c00cc',
+					700: '#510099',
+					800: '#360066',
+					900: '#1b0033',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -84,11 +109,56 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'float-delayed': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'pulse-soft': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.8' },
+				},
+				'gradient-x': {
+					'0%, 100%': {
+						'background-position': '0% 50%',
+					},
+					'50%': {
+						'background-position': '100% 50%',
+					},
+				},
+				'gradient-y': {
+					'0%, 100%': {
+						'background-position': '50% 0%',
+					},
+					'50%': {
+						'background-position': '50% 100%',
+					},
+				},
+				'shimmer': {
+					'0%': {
+						'background-position': '-500px 0',
+					},
+					'100%': {
+						'background-position': '500px 0',
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'float-delayed': 'float-delayed 5s ease-in-out infinite 1s',
+				'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
+				'gradient-x': 'gradient-x 10s ease infinite',
+				'gradient-y': 'gradient-y 10s ease infinite',
+				'shimmer': 'shimmer 2s infinite linear',
+			},
+			backgroundSize: {
+				'300%': '300% 300%',
 			}
 		}
 	},

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Moon, Sun, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface NavbarProps {
@@ -55,9 +55,11 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 dark:bg-slate-950/80 border-b border-slate-800/50 transition-all duration-300 light:bg-white/90 light:border-slate-200/80">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="bg-gradient-to-r from-vibeblue-500 to-vibeviolet-500 h-8 w-8 rounded-lg mr-2"></div>
+          {/* Logo - Updated to match footer */}
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="bg-gradient-to-r from-vibeblue-600 to-vibeviolet-600 rounded-full p-1">
+              <ShieldCheck className="w-5 h-5 text-white" />
+            </div>
             <span className="text-xl font-bold text-white light:text-slate-800">Vibe<span className="text-vibeblue-500">Safe</span></span>
           </Link>
 
